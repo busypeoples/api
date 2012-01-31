@@ -1,0 +1,50 @@
+/**
+ * stylesheet for REST_API
+ *
+ */
+
+body {
+    background: #eee;
+}
+
+label.fields {
+    width: 100px;
+    display: block;
+    clear:both;
+}
+
+/* input class */
+.inputClass {
+    -moz-border-radius: 9px;
+    -webkit-boredr-radius: 9px;
+    border-radius: 9px;
+    background: #fff;
+    padding: 10px 10px;
+    width: 300px;
+}
+
+/* logout btn */
+.btnLogOut a, .submitBtn {
+    -moz-border-radius: 9px;
+    -webkit-boredr-radius: 9px;
+    border-radius: 9px;
+    background: #fff;
+    padding: 10px 10px;
+    text-align: center;
+    width: 200px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    display: block;
+}
+
+/* status updates */
+#statusUpdate {
+    min-height: 200px;
+    background: transparent;
+}
+
+.footer {
+   width: 100%;
+   text-align:center;
+}
