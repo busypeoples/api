@@ -13,9 +13,9 @@
  * the so called web root folder
  */
 
-define('SERVER_ROOT', '/usr/www/users/slingv/hypeyaself.com/framework');
+define('SERVER_ROOT', '');
 
-define('BASE_HTTP', 'http://www.hypeyaself.com/framework');
+define('BASE_HTTP', '');
 
 // include the config file
 require_once('config.php');
