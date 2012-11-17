@@ -1,7 +1,0 @@
-Options +FollowSymlinks
-RewriteEngine on
-
-RewriteCond %{REQUEST_URI} !(.*)\.(css|js|htc|pdf|jpg|jpeg|gif|png|ico)$ [NC]
-RewriteRule ^([^/\.]+)/?$ index.php?page=$1 [L]
-RewriteRule ^([^/\.]+)/([^/\.]+)/?$ index.php?page=$1&type=$2 [L]
-RewriteRule ^([^/\.]+)/([^/\.]+)/([^/\.]+)/?$ index.php?handler=$1&handler2=$2&handler3=$3 [L]
