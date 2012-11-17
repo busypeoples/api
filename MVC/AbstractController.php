@@ -1,11 +1,11 @@
 <?php
 
-namespace Sling;
+namespace Sling\MVC;
 
 /**
  * Abstract controller class
  */
-abstract class AbstractController_Action implements ControllerInterface {
+abstract class AbstractController implements ControllerInterface {
     
     /**
      *

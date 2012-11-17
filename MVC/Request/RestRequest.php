@@ -1,6 +1,8 @@
 <?php
 
-namespace Sling;
+namespace Sling\MVC\Request;
+
+use Sling\RequestInterface;
 
 /**
  * @package REST_API
@@ -61,6 +63,22 @@ class RestRequest implements RequestInterface {
     }
 
     public function setController($controller) {
+        
+    }
+
+    public function getParameter($key) {
+        
+    }
+
+    public function getParameterNames() {
+        
+    }
+
+    public function hasParameter($key) {
+        
+    }
+
+    public function setParameter($request_vars) {
         
     }
 }

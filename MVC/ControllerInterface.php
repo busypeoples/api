@@ -1,6 +1,6 @@
 <?php
 
-namespace Sling;
+namespace Sling\MVC;
 
 /**
  * @package REST_API
