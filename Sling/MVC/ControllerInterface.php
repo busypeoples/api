@@ -10,7 +10,7 @@ interface ControllerInterface {
      * 
      * @param Request $request
      */
-    public function setRequest($request);
+    public function setRequest(RequestInterface $request);
    
     /**
      * @return Request
@@ -21,7 +21,7 @@ interface ControllerInterface {
      * 
      * @param Response $response
      */
-    public function setResponse($response);
+    public function setResponse(ResponseInterface $response);
     
     /**
      * @return Response

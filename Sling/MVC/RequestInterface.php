@@ -1,6 +1,6 @@
 <?php
 
-namespace Sling;
+namespace Sling\MVC;
 
 interface RequestInterface {
     public function setController($controller);

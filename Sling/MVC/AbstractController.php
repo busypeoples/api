@@ -29,7 +29,7 @@ abstract class AbstractController implements ControllerInterface {
      * 
      * @param Request $request
      */
-    public function setRequest(Request $request) {
+    public function setRequest(RequestInterface $request) {
         $this->_request = $request;
         return $this;
     }
@@ -47,7 +47,7 @@ abstract class AbstractController implements ControllerInterface {
      * @param \Sling\Response $response
      * @return \Sling\AbstractController_Action
      */
-    public function setResponse(Response $response)
+    public function setResponse(ResponseInterface $response)
     {
         $this->_response = $response;
         return $this;
@@ -79,6 +79,16 @@ abstract class AbstractController implements ControllerInterface {
     public function getService()
     {
         return $this->_service;
+    }
+    
+    public function execute(\Sling\MVC\RequestInterface $request, \Sling\MVC\ResponseInterface $response) {
+        if ($request->hasParameter('name')) {
+            $view = new \Sling\View\HtmlTemplateView('helloWorld');
+            $view->name = $request->getParameter('name');
+            $view->render($request, $response);
+        } else {
+            $response->write('hello guest user.');
+        }
     }
     
 }
