@@ -51,7 +51,7 @@ foreach ($parse_request as $arg) {
 $controller_target = SERVER_ROOT . DS . 'controller' . DS . $page . '.php';
 
 // check if the target controller exists.
-if(file_exists($controller_target)) {
+if (file_exists($controller_target)) {
     include_once($controller_target);
     $class = ucfirst($page) . '_Controller';
 
@@ -59,11 +59,11 @@ if(file_exists($controller_target)) {
         $controller = new $class;
     } else {
         print "bad";
-        die();
+        exit;
     }
 } else {
     print "404";
-    die();
+    exit;
 }
 
 if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {

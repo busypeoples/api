@@ -2,11 +2,13 @@
 
 namespace Sling\MVC\View;
 
+use \Sling\MVC\ViewInterface;
+
 /*
  * Takes care of the view functionality.
  * @package REST_API
  */
-class View {
+class View implements ViewInterface {
 
     /**
      * @access private
@@ -52,8 +54,6 @@ class View {
 
     }
             
-            
-    
     public function __destruct() {
     }
 }
