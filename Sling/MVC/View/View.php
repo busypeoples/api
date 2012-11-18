@@ -45,8 +45,11 @@ class View {
     }
     
     public function render() {
+        require_once(APPLICATION_PATH . DS . 'view/header.php');
         // load the template
         require_once(APPLICATION_PATH . DS . 'view' . DS . $this->_class_name . '.php');
+        require_once(APPLICATION_PATH . DS . 'view/footer.php');
+
     }
             
             
