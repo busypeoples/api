@@ -12,47 +12,45 @@ class View {
      * @access private
      * @var array
      */
-    private $viewData = array();
-
+    private $_view_data = array();
+    
     /**
-     * @access private
+     *
      * @var String
      */
-    private $render = FALSE;
-
-    public function __construct($temp) {
-       
-        $target = SERVER_ROOT . DS . 'view' . DS . $temp . '.php';
-        if(file_exists($target)) {
-            $this->render = $target;
-        } else {
-            Throw new Exception("faile to find the {$target} file. ");
-        }
-    }
-
-    public function assign($var, $val) {
-        $this->data[$var] = $val;
-    }
-
+    protected $_class_name;
+    
     /**
-     * build the view output.
-     * @param String $output
-     * @return Mixed
+     * 
+     * @param String $name
      */
-    public function build($output = 'direct') {
-        if($output != 'direct') {
-            ob_start();
-        }
-        // assign the data
-        if(isset($this->data)) {
-            $data = $this->data;
-        }
-        include($this->render);
-        if($output != 'direct') {
-            return ob_get_clean();
-        }
+    public function __construct($name) {
+        $this->_class_name = $name;
     }
 
+    public function __set($key, $value) {
+        $this->_view_data[$key] = $value;
+    }
+    
+    public function __get($key) {
+        if (array_key_exists($key, $this->getViewData())) {
+            return $this->_view_data[$key];
+        }
+        
+        return null;
+    }
+    
+    public function getViewData() {
+        return $this->_view_data;
+    }
+    
+    public function render() {
+        // load the template
+        require_once(APPLICATION_PATH . DS . 'view' . DS . $this->_class_name . '.php');
+    }
+            
+            
+    
     public function __destruct() {
     }
 }

@@ -31,11 +31,10 @@ class HttpRequest implements \Sling\MVC\RequestInterface  {
     }
     
     public function getController() {
-        return 'main';
         if ( ! count($this->_parameters) > 0) {
             return false;
         }
-        return $this->_parameters[0];
+        return $this->_parameters['controller'];
     }
 
     public function getParameter($name) {
@@ -64,7 +63,10 @@ class HttpRequest implements \Sling\MVC\RequestInterface  {
     }
 
     public function getMethod() {
-        
+        if ( isset($this->_parameters['method'])) {
+            return $this->_parameters['method'];
+        }
+        return false;
     }
 
     public function setController($controller) {
@@ -81,5 +83,13 @@ class HttpRequest implements \Sling\MVC\RequestInterface  {
 
     public function setParameter($request_vars) {
         
+    }
+    
+    /**
+     * 
+     * @return bool
+     */
+    public function isPost() {
+        return count( $_POST);
     }
 }

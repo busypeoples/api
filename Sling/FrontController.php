@@ -21,6 +21,7 @@ class FrontController {
     protected $_config;
     protected $_service;
     protected $_bootstrap;
+    protected $_view;
     
     /**
      * 
@@ -123,14 +124,33 @@ class FrontController {
     
     /**
      * 
+     * @param \Sling\MVC\View\View $view
+     * @return \Sling\FrontController
+     */
+    public function setView(MVC\View\View $view) {
+        $this->_view = $view;
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return \Sling\MVC\View\View
+     */
+    public function getView() {
+        return $this->_view;
+    }
+    
+    /**
+     * 
      * @param \Sling\MVC\RequestInterface $request
      * @param \Sling\MVC\ResponseInterface $response
      */
     public function handleRequest(RequestInterface $request, ResponseInterface $response) {
         //$this->_preFilters->processFilters($request, $response);
-        /** @var $command \Sling\Command\CommandResolver */
-        $command = $this->_resolver->getCommand($request);
-        $command->execute($request, $response);
+        /** @var $controller \Sling\Command\CommandResolver */
+        $controller = $this->_resolver->getCommand($request);
+        $controller->setView($this->getView());
+        $controller->execute($request, $response);
         //$this->_postFilters->processFilters($request, $response);
         $response->flush();
     }

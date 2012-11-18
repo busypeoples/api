@@ -53,9 +53,15 @@ class Application {
          * @var $response \Sling\System\HttpResponse
          */
         $response = new \Sling\MVC\Response\HttpResponse();
+        
+        /**
+         * @var $view \Sling\MVC\View\View
+         */
+        $view = new \Sling\MVC\View\View($request->getController());
 
         $front_controller = new \Sling\FrontController();
         $front_controller->setResolver($fileHandler);
+        $front_controller->setView($view);
        // $front_controller->addPostFilter(new System\Filter\UpperCaseFilter());
        //$front_controller->addPostFilter(new System\Filter\WordWrapFilter());
         $front_controller->handleRequest($request, $response);

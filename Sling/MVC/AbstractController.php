@@ -2,6 +2,8 @@
 
 namespace Sling\MVC;
 
+use Sling\MVC\View\View;
+
 /**
  * Abstract controller class
  */
@@ -24,6 +26,12 @@ abstract class AbstractController implements ControllerInterface {
      * @var Service 
      */
     protected $_service;
+    
+    /**
+     *
+     * @var View
+     */
+    protected $_view;
     
     /**
      * 
@@ -82,13 +90,23 @@ abstract class AbstractController implements ControllerInterface {
     }
     
     public function execute(\Sling\MVC\RequestInterface $request, \Sling\MVC\ResponseInterface $response) {
-        if ($request->hasParameter('name')) {
-            $view = new \Sling\View\HtmlTemplateView('helloWorld');
-            $view->name = $request->getParameter('name');
-            $view->render($request, $response);
-        } else {
-            $response->write('hello guest user.');
+        $this->setRequest($request);
+        $this->setResponse($response);
+        $method = $request->getMethod();
+        if (! $method || ! method_exists($this, $method)) {
+            $method = 'index';
         }
+        $this->$method();
+        $response->write($this->getView()->render());
+    }
+    
+    public function setView(View $view) {
+        $this->_view = $view;
+        return $this;
+    }
+    
+    public function getView() {
+        return $this->_view;
     }
     
 }
