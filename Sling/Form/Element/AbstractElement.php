@@ -5,7 +5,7 @@
  * @subpackage Form
  */
 
-namespace Sling\Form;
+namespace Sling\Form\Element;
 
 use Sling\Form\ElementInterface;
 

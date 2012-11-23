@@ -8,7 +8,7 @@
 
 namespace Sling\Form\Element;
 
-class Input extends \Sling\Form\AbstractElement {
+class Input extends AbstractElement {
     
     public function getElement() {
         return;

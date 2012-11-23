@@ -2,10 +2,8 @@
 
 namespace Sling\Form\Element;
 
-class Select extends AbstractElement {
+class CheckBox extends AbstractElement {
     
     public function getElement(){
-        // @todo implement
-        return;
     }
 }
