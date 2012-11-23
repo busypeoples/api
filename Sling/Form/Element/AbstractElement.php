@@ -7,7 +7,9 @@
 
 namespace Sling\Form\Element;
 
-use Sling\Form\ElementInterface;
+use Sling\Form\ElementInterface,
+    Sling\Form\ValidatorInterface,
+    Sling\Form\DecoratorInterface;
 
 abstract class AbstractElement implements ElementInterface {
     
@@ -34,6 +36,21 @@ abstract class AbstractElement implements ElementInterface {
     protected $_attributes = array();
     
     /**
+     *
+     * @var string
+     */
+    protected $_output;
+    
+    /**
+     * @var string $_name;
+     */
+    protected $_name;
+    
+    public function __construct($name) {
+        $this->setName($name);
+    }
+
+    /**
      * 
      * @param string $value
      * @return \AbstractElement
@@ -53,10 +70,10 @@ abstract class AbstractElement implements ElementInterface {
     
     /**
      * 
-     * @param \Sling\Form\AbstractDecorator $_decorator
+     * @param \Sling\Form\DecoratorInterface $_decorator
      * @return \Sling\Form\AbstractElement
      */
-    public function addDecorator(AbstractDecorator $decorator) {
+    public function addDecorator(DecoratorInterface $decorator) {
         $this->_decorators[] = $decorator;
         return $this;
     }
@@ -81,10 +98,10 @@ abstract class AbstractElement implements ElementInterface {
     
     /**
      * 
-     * @param \Sling\Form\AbstractValidator $validator
+     * @param \Sling\Form\ValidatorInterface $validator
      * @return \Sling\Form\AbstractElement
      */
-    public function addValidator(AbstractValidator $validator) {
+    public function addValidator(ValidatorInterface $validator) {
         $this->_validators[] = $validator;
         return $this;
     }
@@ -135,5 +152,28 @@ abstract class AbstractElement implements ElementInterface {
     public function getAttributes() {
         return $this->_attributes;
     }
+    
+    /**
+     * 
+     * @param string $name
+     * @return \Sling\Form\Element\AbstractElement
+     */
+    public function setName($name) {
+        $this->_name = $name;
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return string
+     */
+    public function getName() {
+        return $this->_name;
+    }
+    
+    public function getOutput() {
+        return $this->_output;
+    }
+    
     
 }

@@ -6,6 +6,5 @@ class Select extends AbstractElement {
     
     public function getElement(){
         // @todo implement
-        return;
     }
 }
