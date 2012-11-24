@@ -14,13 +14,20 @@ class Label extends AbstractDecorator {
      * 
      * @param string $label
      */
-    public function __construct($label) {
+    public function __construct($label, $class = null) {
         $this->_label = $label;
+        if ($class !== null) {
+            $this->setClass($class);
+        }
     }
     
     public function decorate() {
-        return '<label for ="' . $this->getElement()->getName() . '" >' . 
-                $this->_label . '</label>' . 
-                $this->getElement()->getOutput();
+        $label =  '<label for ="' . $this->getElement()->getName() . '"';
+            if ($this->getClass()) {
+                $label .= ' class="' . $this->getClass() . '"';
+            }
+            $label .= '>';
+            $label .= $this->_label . '</label>';
+            return $label . $this->getElement()->getOutput();
     }
 }

@@ -21,4 +21,6 @@ interface ElementInterface {
     public function getAttributes();
     public function getElement();
     public function validate();
+    public function setRequired($required);
+    public function getRequired();
 }

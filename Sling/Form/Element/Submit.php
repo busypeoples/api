@@ -5,9 +5,16 @@ namespace Sling\Form\Element;
 class Submit extends AbstractElement {
     
     public function getElement(){
-        return '<input type="submit" value="go">';
+        $input = '<input type="submit" value="' . $this->getValue() . '"';
+        if ($this->getClass()) {
+            $input .= 'class="' . $this->getClass() . '"';
+        } 
+        
+        $input .= '>';
+        
+        return $input;
     }
-    
+
     public function validate() {
         return true;
     }

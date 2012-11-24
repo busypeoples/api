@@ -48,6 +48,18 @@ abstract class AbstractElement implements ElementInterface {
     
     /**
      *
+     * @var boolean
+     */
+    protected $_required;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $_class;
+    
+    /**
+     *
      * @var array
      */
     protected $_errors = array();
@@ -204,4 +216,30 @@ abstract class AbstractElement implements ElementInterface {
         return $this->_errors;
     }
     
+    /**
+     * 
+     * @param boolean $required
+     * @return \Sling\Form\Element\AbstractElement
+     */
+    public function setRequired($required) {
+        $this->_required = $required;
+        return $this;
+    }
+    
+    /**
+     * 
+     * @return boolean
+     */
+    public function getRequired() {
+        return $this->_required;
+    }
+    
+    public function setClass($class) {
+        $this->_class = $class;
+        return $this;
+    }
+    
+    public function getClass() {
+        return $this->_class;
+    }
 }

@@ -10,12 +10,15 @@ class Append extends AbstractDecorator {
      */
     protected $_message;
     
-    public function __construct($message) {
+    public function __construct($message, $class = null) {
         $this->_message = $message;
+        if ($class !== null) {
+            $this->setClass($class);
+        }
     }
     
     public function decorate() {
-        return $this->getElement()->getOutput() . ' <span class="message">' . $this->getMessage() . '</span>';
+        return $this->getElement()->getOutput() . ' <span class="' . $this->getClass() . '">' . $this->getMessage() . '</span>';
     }
     
     /**
