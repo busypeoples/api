@@ -12,9 +12,14 @@ class Input extends AbstractElement {
     
     public function getElement() {
         $output[] =  '<input value="' . $this->getValue() . '" ';
-           foreach ($this->getAttributes() as $attribute => $value) {
-               $output[] = $attribute . '="' . $value . '" '; 
-           }
+        
+        foreach ($this->getAttributes() as $attribute => $value) {
+            $output[] = $attribute . '="' . $value . '" '; 
+        }
+           
+        if ($this->getName()) {
+            $output[] = ' name = "' . $this->getName() . '"';
+        }
 
         $output[] = '/>';
         $this->_output = implode('', $output);

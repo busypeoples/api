@@ -54,6 +54,14 @@ class HttpRequest implements \Sling\MVC\RequestInterface  {
         
     }
 
+    /**
+     * 
+     * @return array
+     */
+    public function getAllParameters() {
+        return $this->_parameters;
+    }
+    
     public function getData() {
         
     }

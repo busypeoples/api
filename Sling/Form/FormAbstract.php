@@ -232,4 +232,30 @@ abstract class FormAbstract {
         return implode('', $form);
     }
     
+    /**
+     * 
+     * @param array $values
+     */
+    public function setValues(array $values) {
+        foreach ($values as $key => $value) {
+            if (array_key_exists($key, $this->getElements())) {
+                $this->getElement($key)->setValue($value);
+            }
+        }
+    }
+    
+    public function validate() {
+        $success = true;
+        /** @var $element \Sling\Form\ElementInterface  */
+        foreach ($this->getElements() as $element) {
+            if (! $element->validate()) {
+                $success = false;
+                $element->addDecorator(new \Sling\Form\Decorator\Error($element->getErrors()));
+            }
+        }
+        
+        return $success;
+        
+    }
+    
 }

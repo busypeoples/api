@@ -6,9 +6,17 @@ class Error extends AbstractDecorator {
     
     /**
      *
-     * @var string
+     * @var array
      */
-    protected $_error;
+    protected $_errors = array();
+    
+    /**
+     * 
+     * @param array $errors
+     */
+    public function __construct($errors) {
+        $this->_errors = $errors;
+    }
     
     public function decorate() {
         return $this->getElement()->getOutput() . ' <span class="error">' . $this->getMessage() . '</span>';
@@ -16,11 +24,11 @@ class Error extends AbstractDecorator {
     
     /**
      * 
-     * @param string $error
+     * @param array $error
      * @return \Sling\Form\Decorator\Error
      */
-    public function setMessage($error) {
-        $this->_error = $error;
+    public function setMessage($errors) {
+        $this->_errors = $errors;
         return $this;
     }
     
@@ -29,7 +37,7 @@ class Error extends AbstractDecorator {
      * @return string
      */
     public function getMessage() {
-        return $this->_error;
+        return implode(' ' , $this->_errors);
     }
     
 }

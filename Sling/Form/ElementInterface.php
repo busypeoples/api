@@ -20,4 +20,5 @@ interface ElementInterface {
     public function setAttributes(array $attributes);
     public function getAttributes();
     public function getElement();
+    public function validate();
 }

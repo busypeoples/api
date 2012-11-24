@@ -46,6 +46,12 @@ abstract class AbstractElement implements ElementInterface {
      */
     protected $_name;
     
+    /**
+     *
+     * @var array
+     */
+    protected $_errors = array();
+    
     public function __construct($name) {
         $this->setName($name);
     }
@@ -175,5 +181,27 @@ abstract class AbstractElement implements ElementInterface {
         return $this->_output;
     }
     
+    public function validate() {
+
+        foreach ($this->getValidators() as $validator) {
+            if (!$validator->execute($this->getValue())) {
+                $this->_errors[] = $validator->getMessage();
+            }
+        }
+        
+        if (count($this->_errors) > 0 ) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    /**
+     * 
+     * @return array
+     */
+    public function getErrors() {
+        return $this->_errors;
+    }
     
 }

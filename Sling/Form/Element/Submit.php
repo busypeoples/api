@@ -7,4 +7,8 @@ class Submit extends AbstractElement {
     public function getElement(){
         return '<input type="submit" value="go">';
     }
+    
+    public function validate() {
+        return true;
+    }
 }

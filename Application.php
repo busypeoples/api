@@ -57,7 +57,7 @@ class Application {
         /**
          * @var $view \Sling\MVC\View\View
          */
-        $view = new \Sling\MVC\View\View($request->getController());
+        $view = new \Sling\MVC\View\View($request->getController(), $request->getMethod());
 
         $front_controller = new \Sling\FrontController();
         $front_controller->setResolver($fileHandler);
